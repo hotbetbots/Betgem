@@ -1,0 +1,286 @@
+# ArchiveBox Setup for Google Colab
+# This notebook sets up ArchiveBox with Google Drive integration and MITM proxy
+
+# ========== PART 1: Initial Setup and Drive Mount ==========
+from google.colab import drive
+import os
+import subprocess
+import sys
+import time
+
+# Mount Google Drive
+drive.mount('/content/drive')
+
+# Create ArchiveBox directory in Drive
+archive_path = '/content/drive/MyDrive/ArchiveBox'
+os.makedirs(archive_path, exist_ok=True)
+os.chdir(archive_path)
+
+print(f"Working directory: {os.getcwd()}")
+
+# ========== PART 2: Install Dependencies ==========
+# Update system and install required packages
+!apt-get update
+!apt-get install -y wget curl git python3-pip python3-dev build-essential
+!apt-get install -y chromium-browser chromium-chromedriver
+!apt-get install -y nodejs npm
+!apt-get install -y youtube-dl ffmpeg ripgrep
+
+# Install Python dependencies for MITM proxy
+!pip install mitmproxy
+!pip install archivebox
+
+# Set up Chrome/Chromium path for ArchiveBox
+os.environ['CHROME_BINARY'] = '/usr/bin/chromium-browser'
+os.environ['CHROMEDRIVER_BINARY'] = '/usr/bin/chromedriver'
+
+# ========== PART 3: Initialize ArchiveBox ==========
+# Initialize ArchiveBox in the Google Drive folder
+!archivebox init --setup
+
+# Configure ArchiveBox settings
+!archivebox config --set CHROME_BINARY=/usr/bin/chromium-browser
+!archivebox config --set CHROMEDRIVER_BINARY=/usr/bin/chromedriver
+!archivebox config --set SAVE_SCREENSHOT=True
+!archivebox config --set SAVE_DOM=True
+!archivebox config --set SAVE_PDF=True
+!archivebox config --set SAVE_WGET=True
+!archivebox config --set SAVE_WARC=True
+!archivebox config --set TIMEOUT=120
+!archivebox config --set MEDIA_TIMEOUT=300
+
+# ========== PART 4: MITM Proxy Setup ==========
+# Create directory for MITM proxy files
+mitm_dir = f"{archive_path}/mitm_data"
+os.makedirs(mitm_dir, exist_ok=True)
+
+# Create MITM proxy script for capturing traffic
+mitm_script = f"""
+import mitmproxy.http
+import json
+import os
+from urllib.parse import urlparse
+
+class ArchiveCapture:
+    def __init__(self):
+        self.target_domains = [
+            'raceform.co.za',
+            'racebook.co.za'
+        ]
+        self.captured_urls = set()
+        self.output_file = '{mitm_dir}/captured_urls.txt'
+        
+    def request(self, flow: mitmproxy.http.HTTPFlow) -> None:
+        url = flow.request.pretty_url
+        parsed_url = urlparse(url)
+        
+        # Check if URL is from target domains
+        if any(domain in parsed_url.netloc for domain in self.target_domains):
+            if url not in self.captured_urls:
+                self.captured_urls.add(url)
+                print(f"Captured: {{url}}")
+                
+                # Save to file
+                with open(self.output_file, 'a') as f:
+                    f.write(f"{{url}}\\n")
+                
+                # Also save request details
+                request_data = {{
+                    'url': url,
+                    'method': flow.request.method,
+                    'headers': dict(flow.request.headers),
+                    'timestamp': flow.request.timestamp_start
+                }}
+                
+                with open(f'{mitm_dir}/request_details.jsonl', 'a') as f:
+                    f.write(json.dumps(request_data) + '\\n')
+
+addons = [ArchiveCapture()]
+"""
+
+# Write MITM script to file
+with open(f'{mitm_dir}/capture_addon.py', 'w') as f:
+    f.write(mitm_script)
+
+# ========== PART 5: Website-Specific Crawling Functions ==========
+def crawl_raceform_fixtures():
+    """Crawl Raceform.co.za fixtures page"""
+    url = "https://raceform.co.za/fixtures"
+    
+    print(f"Crawling Raceform fixtures: {url}")
+    
+    # Add to ArchiveBox
+    result = subprocess.run(['archivebox', 'add', url], 
+                          capture_output=True, text=True)
+    
+    if result.returncode == 0:
+        print("✓ Successfully archived Raceform fixtures")
+    else:
+        print(f"✗ Error archiving Raceform fixtures: {result.stderr}")
+    
+    return result.returncode == 0
+
+def crawl_racebook_comprehensive():
+    """Comprehensive crawl of Racebook.co.za"""
+    base_url = "https://racebook.co.za"
+    
+    # Common pages to crawl
+    pages_to_crawl = [
+        "https://racebook.co.za",
+        "https://racebook.co.za/fixtures",
+        "https://racebook.co.za/results",
+        "https://racebook.co.za/form",
+        "https://racebook.co.za/ratings",
+        "https://racebook.co.za/news"
+    ]
+    
+    successful_crawls = 0
+    
+    for url in pages_to_crawl:
+        print(f"Crawling: {url}")
+        
+        result = subprocess.run(['archivebox', 'add', url], 
+                              capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            print(f"✓ Successfully archived: {url}")
+            successful_crawls += 1
+        else:
+            print(f"✗ Error archiving {url}: {result.stderr}")
+        
+        # Small delay to be respectful
+        time.sleep(2)
+    
+    print(f"Successfully crawled {successful_crawls}/{len(pages_to_crawl)} pages")
+    return successful_crawls
+
+# ========== PART 6: Helper Functions ==========
+def start_mitm_proxy():
+    """Start MITM proxy in background"""
+    cmd = [
+        'mitmdump',
+        '--listen-port', '8080',
+        '--set', 'confdir=' + mitm_dir,
+        '--scripts', f'{mitm_dir}/capture_addon.py'
+    ]
+    
+    print("Starting MITM proxy on port 8080...")
+    print("Configure your browser to use proxy: localhost:8080")
+    print("SSL certificate will be generated automatically")
+    
+    # Start proxy in background
+    process = subprocess.Popen(cmd)
+    return process
+
+def view_archive_status():
+    """Check ArchiveBox status and recent additions"""
+    !archivebox status
+    !archivebox list --sort=timestamp --limit=10
+
+def export_captured_urls():
+    """Export captured URLs to ArchiveBox"""
+    urls_file = f'{mitm_dir}/captured_urls.txt'
+    
+    if os.path.exists(urls_file):
+        print("Adding captured URLs to ArchiveBox...")
+        result = subprocess.run(['archivebox', 'add', '--input-file', urls_file],
+                              capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            print("✓ Successfully added captured URLs to archive")
+        else:
+            print(f"✗ Error adding URLs: {result.stderr}")
+    else:
+        print("No captured URLs file found")
+
+def create_chrome_extension():
+    """Create a simple Chrome extension for easy URL capture"""
+    ext_dir = f'{archive_path}/chrome_extension'
+    os.makedirs(ext_dir, exist_ok=True)
+    
+    # Manifest
+    manifest = {
+        "manifest_version": 3,
+        "name": "ArchiveBox Capture",
+        "version": "1.0",
+        "description": "Capture URLs for ArchiveBox",
+        "permissions": ["activeTab", "storage"],
+        "action": {
+            "default_popup": "popup.html",
+            "default_title": "Archive Current Page"
+        }
+    }
+    
+    # Popup HTML
+    popup_html = '''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body { width: 300px; padding: 10px; }
+            button { width: 100%; padding: 10px; margin: 5px 0; }
+        </style>
+    </head>
+    <body>
+        <h3>ArchiveBox Capture</h3>
+        <button id="archive-current">Archive Current Page</button>
+        <button id="archive-domain">Archive Entire Domain</button>
+        <div id="status"></div>
+        <script src="popup.js"></script>
+    </body>
+    </html>
+    '''
+    
+    # Popup JavaScript
+    popup_js = '''
+    document.getElementById('archive-current').addEventListener('click', async () => {
+        const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+        const url = tab.url;
+        
+        // Save URL to storage
+        chrome.storage.local.get(['urls'], (result) => {
+            const urls = result.urls || [];
+            urls.push(url);
+            chrome.storage.local.set({urls: urls});
+        });
+        
+        document.getElementById('status').innerHTML = `Captured: ${url}`;
+    });
+    '''
+    
+    # Write files
+    with open(f'{ext_dir}/manifest.json', 'w') as f:
+        json.dump(manifest, f, indent=2)
+    
+    with open(f'{ext_dir}/popup.html', 'w') as f:
+        f.write(popup_html)
+    
+    with open(f'{ext_dir}/popup.js', 'w') as f:
+        f.write(popup_js)
+    
+    print(f"Chrome extension created in: {ext_dir}")
+    print("Load this folder as an unpacked extension in Chrome")
+
+# ========== PART 7: Main Execution ==========
+print("🚀 ArchiveBox Setup Complete!")
+print("\nAvailable functions:")
+print("- crawl_raceform_fixtures(): Crawl Raceform fixtures")
+print("- crawl_racebook_comprehensive(): Comprehensive Racebook crawl")
+print("- start_mitm_proxy(): Start MITM proxy for traffic capture")
+print("- view_archive_status(): Check archive status")
+print("- export_captured_urls(): Add captured URLs to archive")
+print("- create_chrome_extension(): Create Chrome extension for easy capture")
+
+print("\n📁 Files saved to:", archive_path)
+print("🌐 Access ArchiveBox web interface:")
+print("Run: !archivebox server 0.0.0.0:8000")
+
+# Auto-run initial crawls
+print("\n🔄 Starting initial crawls...")
+crawl_raceform_fixtures()
+crawl_racebook_comprehensive()
+
+# Create Chrome extension
+create_chrome_extension()
+
+print("\n✅ Setup complete! Ready to archive.")
