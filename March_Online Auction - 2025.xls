@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head >
+  <body>
+    
+    <table>
+      <thead>
+        <tr><th><b>lot</b></th><th><b>name</b></th><th><b>sex</b></th><th><b>sire</b></th><th><b>dam</b></th><th><b>vendor</b></th><th><b>buyer</b></th><th><b>reserve</b></th><th><b>price</b></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>ARIKARA</td><td>M</td><td>FENCING MASTER</td><td>TIBOUCHINA</td><td>Prosper Stud</td><td>NOT SOLD</td><td>15 000</td><td>0</td></tr>
+        <tr><td>2</td><td>BIANCA</td><td>M</td><td>DUKE OF MARMALADE</td><td>DANCING JUDY</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>INGRID KLUG</td><td>0</td><td>6 000</td></tr>
+        <tr><td>3</td><td>CALI PRINCESS</td><td>F</td><td>THE UNITED STATES</td><td>QUEEN'S COMMAND</td><td>Rathmor Stud (Pty)  Ltd</td><td>NOT SOLD</td><td>120 000</td><td>0</td></tr>
+        <tr><td>4</td><td>CHARIYA</td><td>M</td><td>CAPE CROSS</td><td>INDABA</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>NOT SOLD</td><td>0</td><td>0</td></tr>
+        <tr><td>5</td><td>CHARMZ LUCK</td><td>M</td><td>PATHFORK</td><td>CHARMZ</td><td>Prosper Stud</td><td>NOT SOLD</td><td>25 000</td><td>0</td></tr>
+        <tr><td>6</td><td>DAME OF FORTUNE</td><td>F</td><td>FUTURA</td><td>MYSTERY DAME</td><td>Rathmor Stud (Pty)  Ltd</td><td>VARSFONTEIN STUD</td><td>0</td><td>460 000</td></tr>
+        <tr><td>7</td><td>DUCHESS OF PARIS</td><td>M</td><td>DUKE OF MARMALADE</td><td>LOUVRE</td><td>Rathmor Stud (Pty)  Ltd</td><td>NOT SOLD</td><td>150 000</td><td>0</td></tr>
+        <tr><td>8</td><td>ELUSIVE FORCE</td><td>M</td><td>ELUSIVE FORT</td><td>FOLIES TREVISE</td><td>Wilgerbosdrift</td><td>PETER RACING</td><td>0</td><td>70 000</td></tr>
+        <tr><td>9</td><td>GIMMEAFIRST</td><td>M</td><td>GIMMETHEGREENLIGHT</td><td>CAPTAIN'S CORNER</td><td>Khaya Stables (Pty) Ltd</td><td>WITHDRAWN</td><td>0</td><td>0</td></tr>
+        <tr><td>10</td><td>GOLDEN SPECTRUM</td><td>M</td><td>SPECTRUM</td><td>GOLDEN APPLE</td><td>Rathmor Stud (Pty)  Ltd</td><td>NOT SOLD</td><td>120 000</td><td>0</td></tr>
+        <tr><td>11</td><td>GRAPE SHOT</td><td>F</td><td>FIRE AWAY</td><td>GYPSY PIRATE</td><td>Equine Group</td><td>MARY ROBINSON</td><td>0</td><td>15 000</td></tr>
+        <tr><td>12</td><td>GREENLIGHT DANCER</td><td>F</td><td>GIMMETHEGREENLIGHT</td><td>GRECIAN DANCER</td><td>Halo Stables (Agent)</td><td>MORNE STRUWIG</td><td>0</td><td>42 500</td></tr>
+        <tr><td>13</td><td>GUARD THE LINES</td><td>M</td><td>WAR FRONT</td><td>DATABASE</td><td>Rathmor Stud (Pty)  Ltd</td><td>NOT SOLD</td><td>80 000</td><td>0</td></tr>
+        <tr><td>14</td><td>JADE VINE</td><td>M</td><td>ARGONAUT</td><td>JUKAO</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>PEET BOONZAAIER</td><td>0</td><td>40 000</td></tr>
+        <tr><td>15</td><td>LA CALISTO</td><td>M</td><td>SILVANO</td><td>LA CALIMA</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>NOT SOLD</td><td>0</td><td>0</td></tr>
+        <tr><td>16</td><td>MANOUSCKAS BEAUT</td><td>M</td><td>BLACK MINNALOUSHE</td><td>PALE NIGHT</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>NOT SOLD</td><td>0</td><td>0</td></tr>
+        <tr><td>17</td><td>MISSION ROCKS</td><td>M</td><td>CRUSADE</td><td>TEMPTED</td><td>Howells Racing Stables (Pty) Ltd</td><td>S J (BERTIE) MYBURGH</td><td>0</td><td>19 000</td></tr>
+        <tr><td>18</td><td>MISSOURI MAJESTY</td><td>F</td><td>WILLIAM LONGSWORD</td><td>APPROACH ME</td><td>Rathmor Stud (Pty)  Ltd</td><td>NOT SOLD</td><td>30 000</td><td>0</td></tr>
+        <tr><td>19</td><td>MUSICAL ROMANCE</td><td>M</td><td>TRIPPI</td><td>RIBBONS FOR THEE</td><td>Narrow Creek Stud</td><td>BEAUMONT STUD</td><td>0</td><td>300 000</td></tr>
+        <tr><td>20</td><td>POLAR WORLD</td><td>M</td><td>WILLIAM LONGSWORD</td><td>POLAR JET</td><td>Rathmor Stud (Pty)  Ltd</td><td>WITHDRAWN</td><td>0</td><td>0</td></tr>
+        <tr><td>21</td><td>ROYAL BLIZZARD</td><td>M</td><td>DANON PLATINA</td><td>ROYAL ASPEN</td><td>Rathmor Stud (Pty)  Ltd</td><td>VENDEL CIVILS</td><td>0</td><td>80 000</td></tr>
+        <tr><td>22</td><td>SACRED HILLS</td><td>M</td><td>KILDONAN</td><td>HIGH SEA</td><td>Prosper Stud</td><td>NOT SOLD</td><td>25 000</td><td>0</td></tr>
+        <tr><td>23</td><td>SADLER’S LASS</td><td>M</td><td>FORT WOOD</td><td>SMART LASS</td><td>Prosper Stud</td><td>NOT SOLD</td><td>40 000</td><td>0</td></tr>
+        <tr><td>24</td><td>SPRING ORCHID</td><td>M</td><td>BADGER'S DRIFT</td><td>SPRING LILAC</td><td>Prosper Stud</td><td>NOT SOLD</td><td>40 000</td><td>0</td></tr>
+        <tr><td>25</td><td>TRIMONTIUM</td><td>M</td><td>VAR</td><td>QUEEN OF KIWI</td><td>Prosper Stud (Pty) Ltd (Agent)</td><td>NOT SOLD</td><td>20 000</td><td>0</td></tr>
+        <tr><td>26</td><td>UNCONQUERABLE LADY</td><td>F</td><td>DANON PLATINA</td><td>TALLY BLUE</td><td>Khaya Stables (Pty) Ltd</td><td>WITHDRAWN</td><td>0</td><td>0</td></tr>
+        <tr><td>27</td><td>VINTAGE CRYSTAL</td><td>F</td><td>GOLD STANDARD</td><td>AUNTY CAROL</td><td>Juan Nel Racing</td><td>PROSPER STUD</td><td>0</td><td>11 000</td></tr>
+        <tr><td>28</td><td>WHERE’S THE PARTY</td><td>M</td><td>PATHFORK</td><td>DANSEUSE</td><td>DA Mackenzie (Agent)</td><td>ROD MATTHEYSE</td><td>0</td><td>40 000</td></tr>
+        <tr><td>29</td><td>WINTER IN AFRICA</td><td>F</td><td>WHAT A WINTER</td><td>AFRICA BLUE</td><td>Rathmor Stud (Pty)  Ltd</td><td>VENDEL CIVILS</td><td>0</td><td>100 000</td></tr>
+        <tr><td>30</td><td>23ELUSIVE FORCE</td><td>C</td><td>BUFFALO BILL CODY</td><td>ELUSIVE FORCE</td><td>Wilgerbosdrift</td><td>PETER RACING</td><td>0</td><td>150 000</td></tr>
+        <tr><td>31</td><td>ZEN STATE</td><td>C</td><td>ERUPT</td><td>ZETA JONES</td><td>To Dissolve A Partnership (Woodruff Racing)</td><td>DUTCH LEGACEY</td><td>0</td><td>264 000</td></tr>
+        <tr><td>32</td><td>WILLIAM’S WOMAN</td><td>F</td><td>WILLIAM LONGSWORD</td><td>BANKING APRIL</td><td>Paarl Diamant Estate (Agent)</td><td>STONE HILL STUD</td><td>0</td><td>150 000</td></tr>
+        <tr><td>33</td><td>E FAMOUS</td><td>F</td><td>VERCINGETORIX</td><td>E-TICKET</td><td>Big Sky Ranch</td><td>NOT SOLD</td><td>200 000</td><td>0</td></tr>
+        <tr><td>34</td><td>FRANKLY FINE</td><td>G</td><td>RABADA</td><td>FRANKING</td><td>Lilly Blue Concepts</td><td>THE SOCIAL SQUAD</td><td>0</td><td>120 000</td></tr>
+        <tr><td>35</td><td>SURREAL MOMENT</td><td>F</td><td>ERUPT</td><td>SHASTINA</td><td>To Dissolve A Partnership (Woodruff Racing)</td><td>DUTCH LEGACEY</td><td>0</td><td>418 500</td></tr>
+        <tr><td>36</td><td>BASINGSTOKE</td><td>F</td><td>ADMIRAL KITTEN</td><td>CAPTAIN'S GIRL</td><td>Glistian Events</td><td>GLISTIAN</td><td>0</td><td>19 000</td></tr>
+        <tr><td>37</td><td>COME ON YOU SPURS</td><td>G</td><td>QUERARI</td><td>UPITY ANN</td><td>Juan Nel Racing</td><td>JACQUES STRYDOM RACING</td><td>0</td><td>14 000</td></tr>
+        <tr><td>38</td><td>DARLING GIRL</td><td>F</td><td>IDEAL WORLD</td><td>OH MY DARLING</td><td>Dr & Mrs S W Steyn & Mr R Steyn</td><td>JACQUES STRYDOM RACING</td><td>0</td><td>50 000</td></tr>
+        <tr><td>39</td><td>DAWN’S EARLY LIGHT</td><td>C</td><td>THE UNITED STATES</td><td>SEA BEAN</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>JONATHAN SNAITH</td><td>0</td><td>105 000</td></tr>
+        <tr><td>40</td><td>DOWN BY THE RIVER</td><td>G</td><td>FIRE AWAY</td><td>OH MY DARLING</td><td>Peter Muscutt Racing</td><td>MANIE PILLAY</td><td>0</td><td>97 000</td></tr>
+        <tr><td>41</td><td>FINE ONE</td><td>G</td><td>ONE WORLD</td><td>DAYDREAM BELIEVER</td><td>Pound Bloodstock (Pty) Ltd</td><td>CENTRAL ROUTE TRADING 267</td><td>0</td><td>130 000</td></tr>
+        <tr><td>42</td><td>FREDERICOS PASSION</td><td>C</td><td>HAT PUNTANO</td><td>FREDERICO'S DREAM</td><td>Econo Agri 100 (Pty) Ltd</td><td>NOT SOLD</td><td>45 000</td><td>0</td></tr>
+        <tr><td>43</td><td>GLAMORZ</td><td>F</td><td>LAST WINTER</td><td>GEMSTONE GLAMOUR</td><td>Paul Lafferty Racing Stables (Agent)</td><td>NOT SOLD</td><td>45 000</td><td>0</td></tr>
+        <tr><td>44</td><td>GLOBAL SCENE</td><td>F</td><td>GLOBAL VIEW</td><td>MEGA SCENE</td><td>Econo Agri 100 (Pty) Ltd</td><td>JUAN NEL</td><td>0</td><td>60 000</td></tr>
+        <tr><td>45</td><td>GUSTO GIRL</td><td>F</td><td>POTALA PALACE</td><td>ASHRAM</td><td>Kelly Mitchley (Agent)</td><td>KM RACING</td><td>0</td><td>50 000</td></tr>
+        <tr><td>46</td><td>HAT MONTERA</td><td>F</td><td>HAT PUNTANO</td><td>ANIMAL LOVER</td><td>Econo Agri 100 (Pty) Ltd</td><td>KM RACING</td><td>0</td><td>40 000</td></tr>
+        <tr><td>47</td><td>IDITA</td><td>F</td><td>VISIONAIRE</td><td>IDITAROD</td><td>Gavin Smith Racing</td><td>GAVIN SMITH</td><td>0</td><td>30 000</td></tr>
+        <tr><td>48</td><td>KINGSBOY</td><td>G</td><td>KINGMAN</td><td>LET IT RIP</td><td>Khaya Stables (Pty) Ltd</td><td>WITHDRAWN</td><td>0</td><td>0</td></tr>
+        <tr><td>49</td><td>LADY THEIA</td><td>F</td><td>FIRE AWAY</td><td>BELLO AFRICO</td><td>Econo Agri 100 (Pty) Ltd</td><td>ELOISE NIEUWOUDT</td><td>0</td><td>14 000</td></tr>
+        <tr><td>50</td><td>MAYOR OF MERRIVALE</td><td>G</td><td>RAFEEF</td><td>SASSY SAL</td><td>Juan Nel Racing</td><td>JACQUES STRYDOM RACING</td><td>0</td><td>11 000</td></tr>
+        <tr><td>51</td><td>MISTER NIBBLES</td><td>G</td><td>HORIZON</td><td>GIRL'S BEST FRIEND</td><td>Pound Bloodstock (Pty) Ltd</td><td>PAUL LAFFERTY RACING STABLES</td><td>0</td><td>50 000</td></tr>
+        <tr><td>52</td><td>PAPA C</td><td>G</td><td>MASTER OF MY FATE</td><td>LIGHT BLUE</td><td>Howells Racing Stables (Pty) Ltd</td><td>WITHDRAWN</td><td>0</td><td>0</td></tr>
+        <tr><td>53</td><td>PROLIFIC STAR</td><td>G</td><td>POTALA PALACE</td><td>STAR PROFILE</td><td>Pound Bloodstock (Pty) Ltd</td><td>GAVIN SMITH</td><td>0</td><td>45 000</td></tr>
+        <tr><td>54</td><td>RAFA BAY</td><td>G</td><td>RAFEEF</td><td>TORRA BAY</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>THE ROLLERS CLUB</td><td>0</td><td>180 000</td></tr>
+        <tr><td>55</td><td>RAIN BIRD</td><td>F</td><td>ACT OF WAR</td><td>CINDY CEE</td><td>Econo Agri 100 (Pty) Ltd</td><td>NOT SOLD</td><td>27 500</td><td>0</td></tr>
+        <tr><td>56</td><td>RED SPARROW</td><td>F</td><td>ACT OF WAR</td><td>SHOT IN THE DARK</td><td>Pound Bloodstock (Pty) Ltd</td><td>JUSTIN WEBBER</td><td>0</td><td>17 000</td></tr>
+        <tr><td>57</td><td>REPETITION</td><td>G</td><td>TWICE OVER</td><td>JOSHUA'S PRINCESS</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>JONATHAN SNAITH</td><td>0</td><td>300 000</td></tr>
+        <tr><td>58</td><td>ROMAN AGENT</td><td>G</td><td>VERCINGETORIX</td><td>SECRET OF VICTORIA</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>MERVIN GOVENDER</td><td>0</td><td>650 000</td></tr>
+        <tr><td>59</td><td>SHES EVERYTHING</td><td>F</td><td>ERUPT</td><td>HONEY BUNCH</td><td>Lilly Blue Concepts</td><td>NOT SOLD</td><td>70 000</td><td>0</td></tr>
+        <tr><td>60</td><td>STATED</td><td>G</td><td>THE UNITED STATES</td><td>DUCHESS'S GREETING</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>DEENESHHAR NAGADOO</td><td>0</td><td>85 000</td></tr>
+        <tr><td>61</td><td>THREE CHEERS</td><td>F</td><td>SOQRAT</td><td>SECRET SEVEN</td><td>Econo Agri 100 (Pty) Ltd</td><td>ZIETSMAN OOSTHUIZEN</td><td>0</td><td>20 000</td></tr>
+        <tr><td>62</td><td>TSUNAMI WARNING</td><td>G</td><td>DANON PLATINA</td><td>SALTWATER GIRL</td><td>Dean Kannemeyer Racing (Agent)</td><td>DEENESHHAR NAGADOO</td><td>0</td><td>95 500</td></tr>
+        <tr><td>63</td><td>TWILIGHT BAY</td><td>F</td><td>POTALA PALACE</td><td>MISSMASALA</td><td>Pound Bloodstock (Pty) Ltd</td><td>GAVIN SMITH</td><td>0</td><td>50 000</td></tr>
+        <tr><td>64</td><td>EXALTED LOVE</td><td>C</td><td>QUASILLO</td><td>EQUINA</td><td>Snaith Racing (Pty) Ltd (Agent)</td><td>ETIENNE BRAUN</td><td>0</td><td>160 000</td></tr>
+      </tbody>
+    </table>
+  
+  </body>
+</html >

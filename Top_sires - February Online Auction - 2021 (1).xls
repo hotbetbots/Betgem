@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head >
+  <body>
+    
+    <table>
+      <thead>
+        <tr><th><b>sire</b></th><th><b>lotssold</b></th><th><b>lotsavail</b></th><th><b>agg</b></th><th><b>avrg</b></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TWICE OVER</td><td>2</td><td>2</td><td>180 000</td><td>90 000</td></tr>
+        <tr><td>BRAZEN BEAU</td><td>1</td><td>1</td><td>120 000</td><td>120 000</td></tr>
+        <tr><td>VAR</td><td>3</td><td>4</td><td>105 000</td><td>35 000</td></tr>
+        <tr><td>TRIPPI</td><td>1</td><td>1</td><td>90 000</td><td>90 000</td></tr>
+        <tr><td>VERCINGETORIX</td><td>1</td><td>1</td><td>90 000</td><td>90 000</td></tr>
+        <tr><td>SILVANO</td><td>2</td><td>3</td><td>87 000</td><td>43 500</td></tr>
+        <tr><td>ANTONIUS PIUS</td><td>1</td><td>1</td><td>85 000</td><td>85 000</td></tr>
+        <tr><td>PATHFORK</td><td>1</td><td>1</td><td>60 000</td><td>60 000</td></tr>
+        <tr><td>MEDAGLIA D'ORO</td><td>1</td><td>1</td><td>50 000</td><td>50 000</td></tr>
+        <tr><td>CAPTAIN AL</td><td>1</td><td>1</td><td>40 000</td><td>40 000</td></tr>
+        <tr><td>TIGER RIDGE</td><td>1</td><td>2</td><td>37 500</td><td>37 500</td></tr>
+        <tr><td>JUDPOT</td><td>2</td><td>3</td><td>37 000</td><td>18 500</td></tr>
+        <tr><td>COUP DE GRACE</td><td>1</td><td>1</td><td>35 000</td><td>35 000</td></tr>
+        <tr><td>SNITZEL</td><td>1</td><td>1</td><td>31 000</td><td>31 000</td></tr>
+        <tr><td>JACKSON</td><td>2</td><td>2</td><td>27 000</td><td>13 500</td></tr>
+        <tr><td>MAIN AIM</td><td>1</td><td>1</td><td>20 000</td><td>20 000</td></tr>
+        <tr><td>ENCOSTA DE LAGO</td><td>1</td><td>1</td><td>6 000</td><td>6 000</td></tr>
+        <tr><td>IDEAL WORLD</td><td>1</td><td>1</td><td>5 000</td><td>5 000</td></tr>
+        <tr><td>MANHATTAN RAIN</td><td>1</td><td>1</td><td>5 000</td><td>5 000</td></tr>
+        <tr><td>NOORDHOEK FLYER</td><td>1</td><td>1</td><td>5 000</td><td>5 000</td></tr>
+        <tr><td>ORATORIO</td><td>1</td><td>1</td><td>5 000</td><td>5 000</td></tr>
+      </tbody>
+    </table>
+  
+  </body>
+</html >
