@@ -1,0 +1,146 @@
+DROP TABLE IF EXISTS Horses;
+DROP TABLE IF EXISTS Trainers;
+DROP TABLE IF EXISTS Jockeys;
+DROP TABLE IF EXISTS Owners;
+DROP TABLE IF EXISTS Horse_Form;
+DROP TABLE IF EXISTS Trainer_Form;
+DROP TABLE IF EXISTS Jockey_Form;
+DROP TABLE IF EXISTS Owner_Form;
+DROP TABLE IF EXISTS Breeding_Stats;
+DROP TABLE IF EXISTS Pedigree_Model;
+DROP TABLE IF EXISTS Academic_Datasets;
+DROP TABLE IF EXISTS Post_Race_Insights;
+DROP TABLE IF EXISTS Horse_Trainer;
+DROP TABLE IF EXISTS Horse_Form;
+DROP TABLE IF EXISTS Trainer_Form;
+DROP TABLE IF EXISTS Jockey_Form;
+DROP TABLE IF EXISTS Owner_Form;
+DROP TABLE IF EXISTS Breeding_Stats;
+DROP TABLE IF EXISTS Pedigree_Model;
+DROP TABLE IF EXISTS Academic_Datasets;
+DROP TABLE IF EXISTS Post_Race_Insights;
+
+
+CREATE TABLE Horses (
+Horse_ID INTEGER PRIMARY KEY,
+Name VARCHAR(100),
+Reg_Region VARCHAR(50),
+DOB DATE,
+Sex VARCHAR(10));
+
+CREATE TABLE Trainers (
+Trainer_ID INTEGER PRIMARY KEY,
+Name VARCHAR(100));
+
+CREATE TABLE Jockeys (
+Jockey_ID INTEGER PRIMARY KEY,
+Name VARCHAR(100));
+
+CREATE TABLE Owners (
+Owner_ID INTEGER PRIMARY KEY,
+Name VARCHAR(100));
+
+CREATE TABLE Horse_Form (
+Horse_ID INT,
+Season VARCHAR(10),
+Runs INT,
+Wins INT,
+Win_Percentage FLOAT,
+Seconds INT,
+Thirds INT,
+Other INT,
+Places INT,
+Place_Percentage FLOAT,
+Win_Stake INT,
+Total_Stake INT,
+Last_Race_Date DATE,
+PRIMARY KEY (Horse_ID,Season));
+
+CREATE TABLE Trainer_Form (
+Trainer_ID INT PRIMARY KEY,
+Trainer_Win_Percentage FLOAT,
+Days_Since_Last_Win INT,
+Runners_Since_Last_Win INT);
+
+CREATE TABLE Jockey_Form (
+Jockey_ID INT PRIMARY KEY,
+Jockey_Win_Percentage FLOAT,
+Days_Since_Last_Win INT,
+Runners_Since_Last_Win INT);
+
+CREATE TABLE Owner_Form (
+Owner_ID INT PRIMARY KEY,
+Ownership_Form_Score FLOAT);
+
+CREATE TABLE Breeding_Stats (
+Horse_ID INT PRIMARY KEY,
+Sire VARCHAR(100),
+Broodmare VARCHAR(100),
+Broodmare_Sire VARCHAR(100),
+Broodmare_Stats INTEGER,
+Stallion_Stats INTEGER,
+Generational_Correlation INTEGER);
+
+CREATE TABLE Pedigree_Model (
+Horse_ID INT PRIMARY KEY,
+Pedigree_Score INT,
+Group1_Winner BOOLEAN);
+
+CREATE TABLE Academic_Datasets (
+Dataset_Name VARCHAR(255) PRIMARY KEY,
+Usage_Description TEXT);
+
+CREATE TABLE Post_Race_Insights (
+Horse_ID INT PRIMARY KEY,
+Race_Insights TEXT,
+Performance_Notes TEXT);
+
+CREATE TABLE Horse_Trainer (
+Horse_ID INT,
+Trainer_ID INT,
+Start_Date DATE,
+End_Date DATE,
+PRIMARY KEY (Horse_ID,Trainer_ID,Start_Date));
+
+CREATE TABLE Horse_Form (
+Horse_ID INT PRIMARY KEY,
+Form_Score FLOAT,
+Last_Race_Date DATE);
+
+CREATE TABLE Trainer_Form (
+Trainer_ID INT PRIMARY KEY,
+Trainer_Win_Percentage FLOAT,
+Days_Since_Last_Win INT,
+Runners_Since_Last_Win INT);
+
+CREATE TABLE Jockey_Form (
+Jockey_ID INT PRIMARY KEY,
+Jockey_Win_Percentage FLOAT,
+Days_Since_Last_Win INT,
+Runners_Since_Last_Win INT);
+
+CREATE TABLE Owner_Form (
+Owner_ID INT PRIMARY KEY,
+Ownership_Form_Score FLOAT);
+
+CREATE TABLE Breeding_Stats (
+Horse_ID INT PRIMARY KEY,
+Broodmare_Stats INTEGER,
+Stallion_Stats INTEGER,
+Generational_Correlation INTEGER,
+Breeder INTEGER NOT NULL);
+
+CREATE TABLE Pedigree_Model (
+Horse_ID INT PRIMARY KEY,
+Pedigree_Score INT,
+Group1_Winner BOOLEAN);
+
+CREATE TABLE Academic_Datasets (
+Dataset_Name VARCHAR(255) PRIMARY KEY,
+Usage_Description TEXT);
+
+CREATE TABLE Post_Race_Insights (
+Horse_ID INT PRIMARY KEY,
+Race_Insights TEXT,
+Performance_Notes TEXT);
+

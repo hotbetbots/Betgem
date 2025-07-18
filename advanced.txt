@@ -1,0 +1,308 @@
+
+
+CREATE TABLE [Horses] (
+[Horse_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Name] VARCHAR(100) NOT NULL UNIQUE,
+[Registration_Number] VARCHAR(50),
+[DOB] DATE,
+[Sex] VARCHAR(10),
+[Color] VARCHAR(30),
+[Sire_ID] INTEGER,
+[Dam_ID] INTEGER,
+[Breeder] VARCHAR(100),
+[Owner_ID] INTEGER,
+[Current_Trainer_ID] INTEGER,
+[Is_Active] BOOLEAN,
+FOREIGN KEY([Sire_ID]) REFERENCES [Horses]([Horse_ID]),
+FOREIGN KEY([Dam_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Horses
+@columnsDescription:  Horse_ID() Name() Registration_Number() DOB() Sex() Color() Sire_ID() Dam_ID() Breeder() Owner_ID() Current_Trainer_ID() Is_Active()
+*/
+
+CREATE TABLE [Horse_Form_Sequence] (
+[Form_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Horse_ID] INTEGER,
+[Race_Date] DATE,
+[Age_At_Race] INTEGER,
+[Season_Year] VARCHAR(10),
+[Position] INTEGER,
+[Field_Size] INTEGER,
+[Starting_Price] VARCHAR(20),
+[Was_Favourite] BOOLEAN,
+[Merit_Rating_Before] INTEGER,
+[Merit_Rating_After] INTEGER,
+[Weight_Carried] DECIMAL(4),
+[Distance_Meters] INTEGER,
+[Track] VARCHAR(50),
+[Race_Class] VARCHAR(50),
+[Stakes_Won] DECIMAL(10),
+[Race_Sequence_Number] INTEGER,
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Horse_Form_Sequence
+@columnsDescription:  Form_ID() Horse_ID() Race_Date() Age_At_Race() Season_Year() Position() Field_Size() Starting_Price() Was_Favourite() Merit_Rating_Before() Merit_Rating_After() Weight_Carried() Distance_Meters() Track() Race_Class() Stakes_Won() Race_Sequence_Number()
+*/
+
+CREATE TABLE [Maiden_Analysis] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Maiden_Broken] BOOLEAN,
+[Maiden_Win_Date] DATE,
+[Maiden_Win_Age] INTEGER,
+[Races_To_Break_Maiden] INTEGER,
+[Times_Favourite_Before_Maiden] INTEGER,
+[Times_Beaten_Favourite_Before_Maiden] INTEGER,
+[Merit_Rating_At_Maiden_Win] INTEGER,
+[Maiden_Win_Odds] VARCHAR(20),
+[Maiden_Stakes_Won] DECIMAL(10),
+[Best_Position_Before_Maiden] INTEGER,
+[Average_Position_Before_Maiden] DECIMAL(3),
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Maiden_Analysis
+@columnsDescription:  Horse_ID() Maiden_Broken() Maiden_Win_Date() Maiden_Win_Age() Races_To_Break_Maiden() Times_Favourite_Before_Maiden() Times_Beaten_Favourite_Before_Maiden() Merit_Rating_At_Maiden_Win() Maiden_Win_Odds() Maiden_Stakes_Won() Best_Position_Before_Maiden() Average_Position_Before_Maiden()
+*/
+
+CREATE TABLE [Merit_Rating_Manipulation] (
+[Manipulation_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Horse_ID] INTEGER,
+[Trainer_ID] INTEGER,
+[Start_Date] DATE,
+[End_Date] DATE,
+[Starting_Merit_Rating] INTEGER,
+[Target_Merit_Rating] INTEGER,
+[Achieved_Merit_Rating] INTEGER,
+[Races_During_Period] INTEGER,
+[Places_During_Period] INTEGER,
+[Pattern_Type] VARCHAR(50),
+[Successful] BOOLEAN,
+[Next_Win_Odds] VARCHAR(20),
+[Next_Win_Stakes] DECIMAL(10),
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Merit_Rating_Manipulation
+@columnsDescription:  Manipulation_ID() Horse_ID() Trainer_ID() Start_Date() End_Date() Starting_Merit_Rating() Target_Merit_Rating() Achieved_Merit_Rating() Races_During_Period() Places_During_Period() Pattern_Type() Successful() Next_Win_Odds() Next_Win_Stakes()
+*/
+
+CREATE TABLE [Feature_Races] (
+[Feature_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Horse_ID] INTEGER,
+[Race_Name] VARCHAR(100),
+[Race_Date] DATE,
+[Grade_Level] VARCHAR(10),
+[Position] INTEGER,
+[Field_Size] INTEGER,
+[Beaten_Margin] VARCHAR(20),
+[Stakes_Won] DECIMAL(10),
+[Beat_The_Boys] BOOLEAN,
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Feature_Races
+@columnsDescription:  Feature_ID() Horse_ID() Race_Name() Race_Date() Grade_Level() Position() Field_Size() Beaten_Margin() Stakes_Won() Beat_The_Boys()
+*/
+
+CREATE TABLE [Breeding_Performance] (
+[Breeding_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Sire_ID] INTEGER,
+[Dam_ID] INTEGER,
+[Offspring_Count] INTEGER,
+[Winners_Count] INTEGER,
+[Stakes_Winners_Count] INTEGER,
+[Group_Winners_Count] INTEGER,
+[Total_Progeny_Earnings] DECIMAL(12),
+[Average_Progeny_Wins] DECIMAL(4),
+[Female_Offspring_Winners] INTEGER,
+[Male_Offspring_Winners] INTEGER,
+[Breeding_Type] VARCHAR(50),
+FOREIGN KEY([Sire_ID]) REFERENCES [Horses]([Horse_ID]),
+FOREIGN KEY([Dam_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Breeding_Performance
+@columnsDescription:  Breeding_ID() Sire_ID() Dam_ID() Offspring_Count() Winners_Count() Stakes_Winners_Count() Group_Winners_Count() Total_Progeny_Earnings() Average_Progeny_Wins() Female_Offspring_Winners() Male_Offspring_Winners() Breeding_Type()
+*/
+
+CREATE TABLE [Sire_Age_Performance] (
+[Sire_Age_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Sire_ID] INTEGER,
+[Sire_Age_Group] VARCHAR(20),
+[Crop_Year] INTEGER,
+[Runners] INTEGER,
+[Winners] INTEGER,
+[Stakes_Winners] INTEGER,
+[Win_Percentage] DECIMAL(5),
+[Stakes_Winner_Percentage] DECIMAL(5),
+[Notable_Pattern] VARCHAR(100),
+FOREIGN KEY([Sire_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Sire_Age_Performance
+@columnsDescription:  Sire_Age_ID() Sire_ID() Sire_Age_Group() Crop_Year() Runners() Winners() Stakes_Winners() Win_Percentage() Stakes_Winner_Percentage() Notable_Pattern()
+*/
+
+CREATE TABLE [Dam_Line_Analysis] (
+[Dam_Line_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Dam_ID] INTEGER,
+[Total_Foals] INTEGER,
+[Total_Winners] INTEGER,
+[Female_Winners] INTEGER,
+[Male_Winners] INTEGER,
+[Stakes_Winners] INTEGER,
+[Female_Stakes_Winners] INTEGER,
+[Male_Stakes_Winners] INTEGER,
+[Pattern_Notes] TEXT,
+[Family_Strength] VARCHAR(50),
+FOREIGN KEY([Dam_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Dam_Line_Analysis
+@columnsDescription:  Dam_Line_ID() Dam_ID() Total_Foals() Total_Winners() Female_Winners() Male_Winners() Stakes_Winners() Female_Stakes_Winners() Male_Stakes_Winners() Pattern_Notes() Family_Strength()
+*/
+
+CREATE TABLE [Sibling_Performance] (
+[Sibling_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Horse_ID] INTEGER,
+[Sibling_Horse_ID] INTEGER,
+[Relationship] VARCHAR(20),
+[Sibling_Total_Wins] INTEGER,
+[Sibling_Stakes_Wins] INTEGER,
+[Sibling_Group_Wins] INTEGER,
+[Sibling_Highest_Rating] INTEGER,
+[Performance_Correlation] DECIMAL(3),
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]),
+FOREIGN KEY([Sibling_Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Sibling_Performance
+@columnsDescription:  Sibling_ID() Horse_ID() Sibling_Horse_ID() Relationship() Sibling_Total_Wins() Sibling_Stakes_Wins() Sibling_Group_Wins() Sibling_Highest_Rating() Performance_Correlation()
+*/
+
+CREATE TABLE [Trainer_Patterns] (
+[Trainer_ID] INTEGER PRIMARY KEY,
+[Name] VARCHAR(100),
+[Group_Horse_Recognition_Score] INTEGER,
+[Maiden_Setup_Specialist] BOOLEAN,
+[MR_Manipulation_Expert] BOOLEAN,
+[Feature_Race_Preparation_Score] INTEGER,
+[Long_Term_Planning_Score] INTEGER,
+[Wasted_Talent_Count] INTEGER,
+[Successful_Feature_Conversions] INTEGER);
+/**
+@table: Trainer_Patterns
+@columnsDescription:  Trainer_ID() Name() Group_Horse_Recognition_Score() Maiden_Setup_Specialist() MR_Manipulation_Expert() Feature_Race_Preparation_Score() Long_Term_Planning_Score() Wasted_Talent_Count() Successful_Feature_Conversions()
+*/
+
+CREATE TABLE [Trainer_Horse_Success] (
+[Combination_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Trainer_ID] INTEGER,
+[Horse_ID] INTEGER,
+[Start_Date] DATE,
+[End_Date] DATE,
+[Races_Together] INTEGER,
+[Wins_Together] INTEGER,
+[Places_Together] INTEGER,
+[Stakes_Wins_Together] INTEGER,
+[Improvement_Pattern] VARCHAR(50),
+[Trainer_Strategy] VARCHAR(100),
+[Success_Rating] INTEGER,
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Trainer_Horse_Success
+@columnsDescription:  Combination_ID() Trainer_ID() Horse_ID() Start_Date() End_Date() Races_Together() Wins_Together() Places_Together() Stakes_Wins_Together() Improvement_Pattern() Trainer_Strategy() Success_Rating()
+*/
+
+CREATE TABLE [Breeding_Categories] (
+[Category_ID] INTEGER PRIMARY KEY AUTOINCREMENT,
+[Category_Name] VARCHAR(50),
+[Description] TEXT,
+[Success_Rate] DECIMAL(5),
+[Typical_Characteristics] TEXT);
+/**
+@table: Breeding_Categories
+@columnsDescription:  Category_ID() Category_Name() Description() Success_Rate() Typical_Characteristics()
+*/
+
+CREATE TABLE [Horse_Breeding_Classification] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Primary_Category] VARCHAR(50),
+[Secondary_Category] VARCHAR(50),
+[Inbreeding_Coefficient] DECIMAL(4),
+[Outcross_Percentage] DECIMAL(5),
+[Scientific_Score] INTEGER,
+[Popular_Score] INTEGER,
+[Breeding_Notes] TEXT,
+FOREIGN KEY([Horse_ID]) REFERENCES [Horses]([Horse_ID]));
+/**
+@table: Horse_Breeding_Classification
+@columnsDescription:  Horse_ID() Primary_Category() Secondary_Category() Inbreeding_Coefficient() Outcross_Percentage() Scientific_Score() Popular_Score() Breeding_Notes()
+*/
+
+CREATE TABLE [Horse_Form] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Form_Score] INTEGER,
+[Last_Race_Date] DATE);
+/**
+@table: Horse_Form
+@columnsDescription:  Horse_ID() Form_Score() Last_Race_Date()
+*/
+
+CREATE TABLE [Trainer_Form] (
+[Trainer_ID] INTEGER PRIMARY KEY,
+[Trainer_Win_Percentage] INTEGER,
+[Days_Since_Last_Win] INTEGER,
+[Runners_Since_Last_Win] INTEGER);
+/**
+@table: Trainer_Form
+@columnsDescription:  Trainer_ID() Trainer_Win_Percentage() Days_Since_Last_Win() Runners_Since_Last_Win()
+*/
+
+CREATE TABLE [Jockey_Form] (
+[Jockey_ID] INTEGER PRIMARY KEY,
+[Jockey_Win_Percentage] INTEGER,
+[Days_Since_Last_Win] INTEGER,
+[Runners_Since_Last_Win] INTEGER);
+/**
+@table: Jockey_Form
+@columnsDescription:  Jockey_ID() Jockey_Win_Percentage() Days_Since_Last_Win() Runners_Since_Last_Win()
+*/
+
+CREATE TABLE [Owner_Form] (
+[Owner_ID] INTEGER PRIMARY KEY,
+[Ownership_Form_Score] INTEGER);
+/**
+@table: Owner_Form
+@columnsDescription:  Owner_ID() Ownership_Form_Score()
+*/
+
+CREATE TABLE [Breeding_Stats] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Broodmare_Stats] INTEGER,
+[Stallion_Stats] INTEGER,
+[Generational_Correlation] INTEGER);
+/**
+@table: Breeding_Stats
+@columnsDescription:  Horse_ID() Broodmare_Stats() Stallion_Stats() Generational_Correlation()
+*/
+
+CREATE TABLE [Pedigree_Model] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Pedigree_Score] INTEGER,
+[Group1_Winner] BOOLEAN);
+/**
+@table: Pedigree_Model
+@columnsDescription:  Horse_ID() Pedigree_Score() Group1_Winner()
+*/
+
+CREATE TABLE [Academic_Datasets] (
+[Dataset_Name] VARCHAR(255) PRIMARY KEY,
+[Usage_Description] TEXT);
+/**
+@table: Academic_Datasets
+@columnsDescription:  Dataset_Name() Usage_Description()
+*/
+
+CREATE TABLE [Post_Race_Insights] (
+[Horse_ID] INTEGER PRIMARY KEY,
+[Race_Insights] TEXT,
+[Performance_Notes] TEXT);
+/**
+@table: Post_Race_Insights
+@columnsDescription:  Horse_ID() Race_Insights() Performance_Notes()
+*/
+

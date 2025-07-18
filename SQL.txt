@@ -1,0 +1,224 @@
+
+
+CREATE TABLE `Horses` (
+`Horse_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Name` VARCHAR(100) NOT NULL UNIQUE,
+`Registration_Number` VARCHAR(50),
+`DOB` DATE,
+`Sex` VARCHAR(10),
+`Color` VARCHAR(30),
+`Sire_ID` INTEGER,
+`Dam_ID` INTEGER,
+`Breeder` VARCHAR(100),
+`Owner_ID` INTEGER,
+`Current_Trainer_ID` INTEGER,
+`Is_Active` BOOLEAN);
+
+CREATE TABLE `Horse_Form_Sequence` (
+`Form_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Horse_ID` INTEGER,
+`Race_Date` DATE,
+`Age_At_Race` INTEGER,
+`Season_Year` VARCHAR(10),
+`Position` INTEGER,
+`Field_Size` INTEGER,
+`Starting_Price` VARCHAR(20),
+`Was_Favourite` BOOLEAN,
+`Merit_Rating_Before` INTEGER,
+`Merit_Rating_After` INTEGER,
+`Weight_Carried` DECIMAL(4),
+`Distance_Meters` INTEGER,
+`Track` VARCHAR(50),
+`Race_Class` VARCHAR(50),
+`Stakes_Won` DECIMAL(10),
+`Race_Sequence_Number` INTEGER);
+
+CREATE TABLE `Maiden_Analysis` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Maiden_Broken` BOOLEAN,
+`Maiden_Win_Date` DATE,
+`Maiden_Win_Age` INTEGER,
+`Races_To_Break_Maiden` INTEGER,
+`Times_Favourite_Before_Maiden` INTEGER,
+`Times_Beaten_Favourite_Before_Maiden` INTEGER,
+`Merit_Rating_At_Maiden_Win` INTEGER,
+`Maiden_Win_Odds` VARCHAR(20),
+`Maiden_Stakes_Won` DECIMAL(10),
+`Best_Position_Before_Maiden` INTEGER,
+`Average_Position_Before_Maiden` DECIMAL(3));
+
+CREATE TABLE `Merit_Rating_Manipulation` (
+`Manipulation_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Horse_ID` INTEGER,
+`Trainer_ID` INTEGER,
+`Start_Date` DATE,
+`End_Date` DATE,
+`Starting_Merit_Rating` INTEGER,
+`Target_Merit_Rating` INTEGER,
+`Achieved_Merit_Rating` INTEGER,
+`Races_During_Period` INTEGER,
+`Places_During_Period` INTEGER,
+`Pattern_Type` VARCHAR(50),
+`Successful` BOOLEAN,
+`Next_Win_Odds` VARCHAR(20),
+`Next_Win_Stakes` DECIMAL(10));
+
+CREATE TABLE `Feature_Races` (
+`Feature_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Horse_ID` INTEGER,
+`Race_Name` VARCHAR(100),
+`Race_Date` DATE,
+`Grade_Level` VARCHAR(10),
+`Position` INTEGER,
+`Field_Size` INTEGER,
+`Beaten_Margin` VARCHAR(20),
+`Stakes_Won` DECIMAL(10),
+`Beat_The_Boys` BOOLEAN);
+
+CREATE TABLE `Breeding_Performance` (
+`Breeding_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Sire_ID` INTEGER,
+`Dam_ID` INTEGER,
+`Offspring_Count` INTEGER,
+`Winners_Count` INTEGER,
+`Stakes_Winners_Count` INTEGER,
+`Group_Winners_Count` INTEGER,
+`Total_Progeny_Earnings` DECIMAL(12),
+`Average_Progeny_Wins` DECIMAL(4),
+`Female_Offspring_Winners` INTEGER,
+`Male_Offspring_Winners` INTEGER,
+`Breeding_Type` VARCHAR(50));
+
+CREATE TABLE `Sire_Age_Performance` (
+`Sire_Age_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Sire_ID` INTEGER,
+`Sire_Age_Group` VARCHAR(20),
+`Crop_Year` INTEGER,
+`Runners` INTEGER,
+`Winners` INTEGER,
+`Stakes_Winners` INTEGER,
+`Win_Percentage` DECIMAL(5),
+`Stakes_Winner_Percentage` DECIMAL(5),
+`Notable_Pattern` VARCHAR(100));
+
+CREATE TABLE `Dam_Line_Analysis` (
+`Dam_Line_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Dam_ID` INTEGER,
+`Total_Foals` INTEGER,
+`Total_Winners` INTEGER,
+`Female_Winners` INTEGER,
+`Male_Winners` INTEGER,
+`Stakes_Winners` INTEGER,
+`Female_Stakes_Winners` INTEGER,
+`Male_Stakes_Winners` INTEGER,
+`Pattern_Notes` TEXT,
+`Family_Strength` VARCHAR(50));
+
+CREATE TABLE `Sibling_Performance` (
+`Sibling_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Horse_ID` INTEGER,
+`Sibling_Horse_ID` INTEGER,
+`Relationship` VARCHAR(20),
+`Sibling_Total_Wins` INTEGER,
+`Sibling_Stakes_Wins` INTEGER,
+`Sibling_Group_Wins` INTEGER,
+`Sibling_Highest_Rating` INTEGER,
+`Performance_Correlation` DECIMAL(3));
+
+CREATE TABLE `Trainer_Patterns` (
+`Trainer_ID` INTEGER PRIMARY KEY,
+`Name` VARCHAR(100),
+`Group_Horse_Recognition_Score` INTEGER,
+`Maiden_Setup_Specialist` BOOLEAN,
+`MR_Manipulation_Expert` BOOLEAN,
+`Feature_Race_Preparation_Score` INTEGER,
+`Long_Term_Planning_Score` INTEGER,
+`Wasted_Talent_Count` INTEGER,
+`Successful_Feature_Conversions` INTEGER);
+
+CREATE TABLE `Trainer_Horse_Success` (
+`Combination_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Trainer_ID` INTEGER,
+`Horse_ID` INTEGER,
+`Start_Date` DATE,
+`End_Date` DATE,
+`Races_Together` INTEGER,
+`Wins_Together` INTEGER,
+`Places_Together` INTEGER,
+`Stakes_Wins_Together` INTEGER,
+`Improvement_Pattern` VARCHAR(50),
+`Trainer_Strategy` VARCHAR(100),
+`Success_Rating` INTEGER);
+
+CREATE TABLE `Breeding_Categories` (
+`Category_ID` INTEGER PRIMARY KEY AUTO_INCREMENT,
+`Category_Name` VARCHAR(50),
+`Description` TEXT,
+`Success_Rate` DECIMAL(5),
+`Typical_Characteristics` TEXT);
+
+CREATE TABLE `Horse_Breeding_Classification` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Primary_Category` VARCHAR(50),
+`Secondary_Category` VARCHAR(50),
+`Inbreeding_Coefficient` DECIMAL(4),
+`Outcross_Percentage` DECIMAL(5),
+`Scientific_Score` INTEGER,
+`Popular_Score` INTEGER,
+`Breeding_Notes` TEXT);
+
+CREATE TABLE `Horse_Form` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Form_Score` INTEGER,
+`Last_Race_Date` DATE);
+
+CREATE TABLE `Trainer_Form` (
+`Trainer_ID` INTEGER PRIMARY KEY,
+`Trainer_Win_Percentage` INTEGER,
+`Days_Since_Last_Win` INTEGER,
+`Runners_Since_Last_Win` INTEGER);
+
+CREATE TABLE `Jockey_Form` (
+`Jockey_ID` INTEGER PRIMARY KEY,
+`Jockey_Win_Percentage` INTEGER,
+`Days_Since_Last_Win` INTEGER,
+`Runners_Since_Last_Win` INTEGER);
+
+CREATE TABLE `Owner_Form` (
+`Owner_ID` INTEGER PRIMARY KEY,
+`Ownership_Form_Score` INTEGER);
+
+CREATE TABLE `Breeding_Stats` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Broodmare_Stats` INTEGER,
+`Stallion_Stats` INTEGER,
+`Generational_Correlation` INTEGER);
+
+CREATE TABLE `Pedigree_Model` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Pedigree_Score` INTEGER,
+`Group1_Winner` BOOLEAN);
+
+CREATE TABLE `Academic_Datasets` (
+`Dataset_Name` VARCHAR(255) PRIMARY KEY,
+`Usage_Description` TEXT);
+
+CREATE TABLE `Post_Race_Insights` (
+`Horse_ID` INTEGER PRIMARY KEY,
+`Race_Insights` TEXT,
+`Performance_Notes` TEXT);
+
+ALTER TABLE `Horses` ADD CONSTRAINT `Horses_Sire_ID_Horses_Horse_ID` FOREIGN KEY (`Sire_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Horses` ADD CONSTRAINT `Horses_Dam_ID_Horses_Horse_ID` FOREIGN KEY (`Dam_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Horse_Form_Sequence` ADD CONSTRAINT `Horse_Form_Sequence_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Maiden_Analysis` ADD CONSTRAINT `Maiden_Analysis_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Merit_Rating_Manipulation` ADD CONSTRAINT `Merit_Rating_Manipulation_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Feature_Races` ADD CONSTRAINT `Feature_Races_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Breeding_Performance` ADD CONSTRAINT `Breeding_Performance_Sire_ID_Horses_Horse_ID` FOREIGN KEY (`Sire_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Breeding_Performance` ADD CONSTRAINT `Breeding_Performance_Dam_ID_Horses_Horse_ID` FOREIGN KEY (`Dam_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Sire_Age_Performance` ADD CONSTRAINT `Sire_Age_Performance_Sire_ID_Horses_Horse_ID` FOREIGN KEY (`Sire_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Dam_Line_Analysis` ADD CONSTRAINT `Dam_Line_Analysis_Dam_ID_Horses_Horse_ID` FOREIGN KEY (`Dam_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Sibling_Performance` ADD CONSTRAINT `Sibling_Performance_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Sibling_Performance` ADD CONSTRAINT `Sibling_Performance_Sibling_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Sibling_Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Trainer_Horse_Success` ADD CONSTRAINT `Trainer_Horse_Success_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
+ALTER TABLE `Horse_Breeding_Classification` ADD CONSTRAINT `Horse_Breeding_Classification_Horse_ID_Horses_Horse_ID` FOREIGN KEY (`Horse_ID`) REFERENCES `Horses`(`Horse_ID`);
